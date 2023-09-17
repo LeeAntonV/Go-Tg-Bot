@@ -1,0 +1,25 @@
+version: "3.1"
+services:
+  api:
+    build: .
+    ports:
+      - 8000:8000
+    environment:
+      - DATABASE_HOSTNAME="127.0.0.1"
+      - DATABASE_PORT=5432
+      - DATABASE_PASSWORD=1234
+      - DATABASE_NAME=tg-bot
+      - DATABASE_USERNAME=postgres
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=password123
+      - POSTGRES_DB=Fastapitr
+    volumes:
+      - postgres-db:/var/lib/postgresql/data
+
+volumes:
+  postgres-db:
