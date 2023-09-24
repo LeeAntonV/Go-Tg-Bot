@@ -11,7 +11,7 @@ import (
 
 	"example/main/internal/model"
 
-	src "example/main/internal/source"
+	sorc "example/main/internal/source"
 )
 
 //go:generate moq --out=mocks/mock_article_storage.go --pkg=mocks . ArticleStorage
@@ -97,7 +97,7 @@ func (f *Fetcher) Fetch(ctx context.Context) error {
 				log.Printf("[ERROR] failed to process items from source %q: %v", source.Name(), err)
 				return
 			}
-		}(src.NewRSSSourceFromModel(source))
+		}(sorc.NewRSSSourceFromModel(source))
 	}
 
 	wg.Wait()
